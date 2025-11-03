@@ -1,6 +1,8 @@
 # Chapter 6: Print Calendar - Method Abstraction and Stepwise Refinement
 
-## 📅 What We're Building Today
+## 📅 What We're Building This Week (Week 11)
+
+**Note:** The link to this repository must be turned in no later than the end of the week on Friday, November 7 @ 11:59 p.m. 
 
 A calendar application that:
 - Asks the user for a **year** and a **month**
