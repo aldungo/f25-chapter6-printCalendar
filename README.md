@@ -1,141 +1,166 @@
-# Programming Fundamentals I - Fall 2025
+# Chapter 6: Print Calendar - Method Abstraction and Stepwise Refinement
 
-## Lab Assignment #10: Compound Interest Calculator
+## 📅 What We're Building Today
 
-*Due at 11:59 pm the night before the next lab session*
+A calendar application that:
+- Asks the user for a **year** and a **month**
+- Prints a formatted calendar for that month
 
----
-
-## Purpose
-
-A real estate agent wants to develop an application to calculate the value of purchased homes over time. The application will compute the compound interest of a house given a principal amount (initial cost), interest rate, and number of years after the purchase. This lab focuses on the following concepts:
-
-• Implementing void methods
-
-• Implementing value-returning methods
-
----
-
-## In-Class 10 Lesson
-
-To get started, let's consider another program using multiple custom methods. Refactor (rewrite) the tipping application from **Lab 4** so that the main method makes requests for user input while two other methods outside of main handle:
-
-• Calculating the final cost of a meal (including tax and tip)
-
-• Printing the output to the program with proper formatting
-
----
-
-## Lab 10 Task
-
-Create a project called `CompoundInterest_FirstName_LastName` or `Lab10_FirstName_LastName`. Remember to include comments describing your program. A key component of this lab should be comments describing the methods used.
-
-The steps provided are broken down into a bottom-up implementation. Methods implemented in earlier steps will be used in later steps.
-
-### Step 1: Implement the Compound Interest Calculation Method
-
-Implement a method that will handle the calculation of the compound interest. This method will take a double for the principal amount, a double for the interest rate, and an int for the number of years. This method will return a double for the final amount. Use the following formula to calculate compound interest:
-
-**A = P(1 + r)^t**
-
-Where:
-- **P** is the principal amount
-- **r** is the interest rate
-- **t** is the number of years
-- **A** is the final amount
-
-*Be careful about the order of operations in this formula.*
-
-### Step 2: Implement the Output Formatting Method
-
-Implement a method that will handle printing the output to the console with proper formatting. This method will take a double for the principal amount, a double for the interest rate, an int for the number of years, and a double for the final amount. This method will not return anything. 
-
-**Formatting requirements:**
-- The principal amount and final amount must be formatted to two decimal places
-- The interest rate must be formatted to three decimal places
-
-### Step 3: Implement the Main Method
-
-In the main method, do the following:
-
-• Construct an object of the Scanner class to handle user input
-
-• Declare variables for the principal amount, interest rate, number of years, and final amount. The data types should match what is expected for the other methods in this program
-
-• Make requests to the user to enter the principal amount, interest rate, and number of years. The interest rate will be requested as a percent, so make sure this is converted to a decimal before performing any calculations
-
-• Call the method implemented in Step 1 to calculate the final amount
-
-• Call the method implemented in Step 2 to print the output to the console
-
----
-
-## Example Output
-
+**Example Output:**
 ```
-Please enter the principal amount: 137000
-Please enter the interest rate (as a percent): 2.175
-Please enter the number of elapsed years: 15
+Enter full year (e.g., 2012): 2025
+Enter month as a number between 1 and 12: 11
 
-Given a principal amount of $137000.00, an interest rate of  2.1750% and 15 years, the final amount is $189186.55.
+ November 2025
+-----------------------------
+ Sun Mon Tue Wed Thu Fri Sat
+                          1
+   2   3   4   5   6   7   8
+   9  10  11  12  13  14  15
+  16  17  18  19  20  21  22
+  23  24  25  26  27  28  29
+  30
 ```
 
 ---
 
-## Running Your Program
+## 🎯 Learning Objectives
 
-### Method 1: Using the Terminal
-1. Open the terminal in your codespace (Terminal → New Terminal)
-2. Compile your program:
-   ```bash
-   javac Lab10_YourFirstName_YourLastName.java
-   ```
-3. Run your program:
-   ```bash
-   java Lab10_YourFirstName_YourLastName
-   ```
-
-Replace `Lab10_YourFirstName_YourLastName.java` with your actual file name. If you are running the in-class exercise, use the corresponding file name instead.
-
-💡 **Remember:** After running your program, take a screenshot of your console output and add it to your file directory on the left as part of your submission.
+By the end of this activity, you'll understand:
+- **Method Abstraction**: Breaking complex problems into smaller, manageable pieces
+- **Stepwise Refinement**: Top-down design and bottom-up implementation
+- **Code Reusability**: Writing methods that can be used multiple times
+- **Modular Programming**: Making code easier to read, debug, and test
 
 ---
 
-## Grading Criteria
+## 🧩 The Big Picture: Breaking Down the Problem
 
-This lab is worth 100 points total, distributed as follows:
+### Level 1: The Main Problem
+```
+Print a calendar for a given month and year
+```
 
-• Comments describing the program: 5 points
+### Level 2: Two Main Tasks
+1. **Get input** from the user (year and month)
+2. **Print the calendar** for that month
 
-• The method to handle calculations: 35 points
+### Level 3: Breaking Down "Print Calendar"
+The `printMonth` method needs to:
+- Print the **month title** (month name, year, and day headers)
+- Print the **month body** (the actual dates)
 
-• The method to handle the properly formatted output: 35 points
+### Level 4: Breaking Down "Print Month Title"
+- Get the **month name** (convert number to string like "November")
 
-• The main method: 25 points
-  - Scanner and other variable declarations: 5 points
-  - Requests to the user: 10 points
-  - Calls to the other two methods: 10 points 
+### Level 5: Breaking Down "Print Month Body"
+- Get the **start day** of the week (is the 1st a Sunday? Monday?)
+- Get the **number of days** in the month (28, 29, 30, or 31?)
+
+### Level 6: Breaking Down "Get Start Day"
+- Calculate the **total number of days** since a known reference date
+
+### Level 7: Breaking Down "Get Total Days"
+- Determine if a year is a **leap year**
+- Get the **number of days in each month**
 
 ---
 
-## Commit Your Changes
+## 🏗️ Implementation Strategy: Bottom-Up Approach
 
-### Step 1: Use VS Code's Source Control panel
-   - Click the Source Control icon in the left sidebar
-   - Type a commit message describing your changes
-   - Click "Commit" then "Sync Changes" to push your code
+We'll build from the **bottom up**, starting with the smallest helper methods and working our way up to the main program.
 
-### Step 2: Verify Submission
-After pushing your changes, visit your assignment repository on GitHub Classroom. Confirm that your latest code and commit message appear, and that your files are named correctly. 
-
-### Step 3: Submit to Blackboard Assignment
-Once you have verified your submission on GitHub Classroom, copy the URL of your assignment repository and submit this GitHub repository link to Blackboard as confirmation that you are DONE.
+### Implementation Order:
+1. ✅ **isLeapYear** - The foundation (we did this in Chapter 3!)
+2. ✅ **getNumberOfDaysInMonth** - Uses isLeapYear
+3. ✅ **getTotalNumberOfDays** - Uses the above two methods
+4. ✅ **getStartDay** - Uses getTotalNumberOfDays
+5. ✅ **getMonthName** - Converts month number to name
+6. ✅ **printMonthTitle** - Uses getMonthName
+7. ✅ **printMonthBody** - Uses getStartDay and getNumberOfDaysInMonth
+8. ✅ **printMonth** - Uses printMonthTitle and printMonthBody
+9. ✅ **main** - Puts it all together!
 
 ---
 
+## 📝 Key Concepts to Remember
 
+### Reference Date
+- **January 1, 1800** was a **Wednesday** (day 3 of the week, where Sunday = 0)
+- We calculate all dates relative to this known point
 
-**Excellent work!** You've reached Lab 10, and this assignment introduces you to implementing custom methods in Java. Working with value-returning methods and void methods will help you understand how to modularize your code and create reusable components. This compound interest calculator demonstrates a practical application of methods in a real-world scenario, helping you understand how to break down complex problems into smaller, manageable functions. Remember to include detailed comments describing what each method does!
+### Days in Each Month
+- **31 days**: January, March, May, July, August, October, December
+- **30 days**: April, June, September, November
+- **28/29 days**: February (depends on leap year)
 
-**Important:** Focus on completing the lab assignment. Do NOT edit or tamper with any test files, markdown files, or class files if they appear in your repository.
+### Leap Year Rules
+A year is a leap year if:
+- It's divisible by 400, OR
+- It's divisible by 4 AND NOT divisible by 100
+
+Examples:
+- 2000 = leap year (divisible by 400)
+- 2024 = leap year (divisible by 4, not by 100)
+- 1900 = NOT a leap year (divisible by 100, but not 400)
+
+---
+
+## 🚀 Getting Started
+
+1. Open the file `F25_PrintCalendar_FirstName_LastName.java`
+2. Replace `FirstName_LastName` with your actual name
+3. Follow along with the instructor or video
+4. Complete each `TODO` section as we work through it together
+5. Test your program frequently!
+
+### Testing Your Program
+After completing each method, you can test it by:
+- Uncommenting the test code in `main`
+- Running the program
+- Verifying the output matches expected results
+
+---
+
+## 💡 Tips for Success
+
+1. **Work step-by-step**: Don't try to write everything at once
+2. **Test frequently**: After writing each method, test it!
+3. **Use the textbook**: This follows the example exactly
+4. **Ask questions**: If you're stuck, raise your hand or ask in chat
+5. **Collaborate**: Discuss with classmates, but write your own code
+6. **Think about reusability**: Notice how we use smaller methods in bigger ones
+
+---
+
+## 🎓 Benefits of This Approach
+
+### Simpler Program
+- Each method has ONE clear purpose
+- Easy to read and understand
+
+### Code Reusability
+- Methods like `isLeapYear` and `getNumberOfDaysInMonth` are used multiple times
+- No redundant code!
+
+### Easier Development & Debugging
+- Test one method at a time
+- If something breaks, you know exactly where to look
+
+### Better Teamwork
+- Different programmers could work on different methods
+- As long as the method signatures match, everything works together
+
+---
+
+## 📚 Additional Resources
+
+- Textbook: Chapter 6 - Methods
+- Lecture slides (provided in class)
+- Previous class video recording
+- Java API Documentation: [Scanner](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+
+---
+
+**Remember**: Programming is a skill that improves with practice. Work through this carefully, and you'll understand how professional programmers break down complex problems into manageable pieces! 🌟
 
